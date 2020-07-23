@@ -7,11 +7,11 @@ namespace SampleASP1.Controllers
     [Route("[controller]")]
     public class BookController : ControllerBase
     {
-        private readonly ILogger<BookController> _logger;
+        private readonly ILogger<BookController> logger;
 
         public BookController(ILogger<BookController> logger)
         {
-            _logger = logger;
+            this.logger = logger;
         }
     }
 }
