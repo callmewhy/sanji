@@ -1,6 +1,7 @@
 <Project>
     <ItemGroup Label="PackageReference used by src">
-       
+        <PackageReference Update="Microsoft.Extensions.Hosting" Version="3.1.5" />
+        <PackageReference Update="Newtonsoft.Json" Version="12.0.3" />
     </ItemGroup>
 
     <ItemGroup Label="PackageReference used by tests">
