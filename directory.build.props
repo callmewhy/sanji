@@ -1,7 +1,8 @@
 <Project>
-  <PropertyGroup>
-    <EnlistmentRoot>$(MSBuildThisFileDirectory.TrimEnd('\\'))\</EnlistmentRoot>
-    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
-    <CodeAnalysisRuleSet>$(EnlistmentRoot)\StyleCop.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
+    <PropertyGroup>
+        <EnlistmentRoot>$(MSBuildThisFileDirectory.TrimEnd('\\'))\</EnlistmentRoot>
+        <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
+        <CodeAnalysisRuleSet>$(EnlistmentRoot)\StyleCop.ruleset</CodeAnalysisRuleSet>
+        <CentralPackagesFile>$(EnlistmentRoot)\Packages.props</CentralPackagesFile>
+    </PropertyGroup>
 </Project>
