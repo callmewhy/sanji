@@ -16,12 +16,17 @@ namespace DemoTest
         [TestMethod]
         public async Task Test()
         {
-            Console.WriteLine("Start");
-            var jsonString = JsonConvert.SerializeObject(new { Name = "Book" });
-            await httpClient.PostAsync("http://localhost:5000/books", new StringContent(jsonString, Encoding.UTF8, "application/json"));
             var response = await httpClient.GetAsync("http://localhost:5000/books");
             var content = await response.Content.ReadAsStringAsync();
             var books = JsonConvert.DeserializeObject<List<object>>(content);
+            Assert.AreEqual(0, books.Count);
+
+            var jsonString = JsonConvert.SerializeObject(new { Name = "Book" });
+            await httpClient.PostAsync("http://localhost:5000/books", new StringContent(jsonString, Encoding.UTF8, "application/json"));
+
+            response = await httpClient.GetAsync("http://localhost:5000/books");
+            content = await response.Content.ReadAsStringAsync();
+            books = JsonConvert.DeserializeObject<List<object>>(content);
             Assert.AreEqual(1, books.Count);
         }
     }
