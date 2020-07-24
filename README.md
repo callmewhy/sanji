@@ -1,5 +1,5 @@
 # Sanji
-A sandbox for smoking testing
+A sandbox for smoke testing
 
 ```csharp
 var httpClient = Sanji.GetService("SUT").CreateHttpClient();
@@ -7,7 +7,7 @@ var response = await httpClient.GetAsync("/books");
 ```
 
 ## What?
-Sanji is a sandbox for smoking test. It will run your servies in processes and provide a friendly API to access in test cases.
+Sanji is a sandbox for smoke test. It will run your servies in processes and provide a friendly API to access in test cases.
 
 ## How?
 
