@@ -1,7 +1,6 @@
 namespace Sanji
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Microsoft.Extensions.Configuration;
 
     public static class Sanji
