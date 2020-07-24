@@ -10,6 +10,11 @@ namespace Sanji
 
         private static List<Service> Services { get; set; }
 
+        public static Service GetService(string serviceName)
+        {
+            return Services.Find(i => i.Name == serviceName);
+        }
+
         public static void Start()
         {
             var configuration = new ConfigurationBuilder()
@@ -17,7 +22,15 @@ namespace Sanji
                                     .Build();
 
             AppSettings = configuration.Get<AppSettings>();
-            Services = AppSettings.Services.ConvertAll(i => new Service() { Settings = i, });
+            Services = AppSettings.Services.ConvertAll(i =>
+            {
+                return new Service()
+                {
+                    Name = i.Name,
+                    Executable = i.Executable,
+                    Port = i.Port,
+                };
+            });
 
             foreach (var service in Services)
             {

@@ -7,16 +7,18 @@ namespace DemoTest
     using System.Threading.Tasks;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using Sanji;
 
     [TestClass]
     public class SampleASP1Test
     {
-        private static HttpClient httpClient = new HttpClient();
+        private Service ServiceASP1 => Sanji.GetService("SampleASP1");
 
         [TestMethod]
         public async Task Test()
         {
-            var response = await httpClient.GetAsync("http://localhost:5000/books");
+            var httpClient = this.ServiceASP1.CreateHttpClient();
+            var response = await httpClient.GetAsync("/books");
             var content = await response.Content.ReadAsStringAsync();
             var books = JsonConvert.DeserializeObject<List<object>>(content);
             Assert.AreEqual(0, books.Count);

@@ -1,5 +1,6 @@
 namespace DemoTest
 {
+    using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Sanji;
 
@@ -9,6 +10,7 @@ namespace DemoTest
         [AssemblyInitialize]
         public static void AssemblyInitialize(TestContext context)
         {
+            Console.WriteLine($"Test {context.TestName} start");
             Sanji.Start();
         }
 
