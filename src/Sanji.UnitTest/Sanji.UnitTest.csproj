@@ -10,17 +10,10 @@
         <PackageReference Include="MSTest.TestFramework" />
         <PackageReference Include="coverlet.collector" />
         <PackageReference Include="coverlet.msbuild" />
-        <PackageReference Include="Newtonsoft.Json" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Sanji\Sanji.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Update="appsettings.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
+        <ProjectReference Include="..\Sanji\Sanji.csproj" />
     </ItemGroup>
 
 </Project>
