@@ -31,3 +31,4 @@ jobs:
       with:
         path: Sanji.UnitTest\TestResults\CodeCoverage\coverage.cobertura.xml
         repo_token: ${{ secrets.GITHUB_TOKEN }}
+        minimum_coverage: 0
