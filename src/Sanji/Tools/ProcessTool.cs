@@ -5,7 +5,6 @@ namespace Sanji
     using System.IO;
     using System.Linq;
     using System.Text;
-    using System.Text.RegularExpressions;
 
     internal static class ProcessTool
     {
