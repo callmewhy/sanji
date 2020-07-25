@@ -1,8 +1,8 @@
 # Sanji
 <img align="right" width=180 height=260 src=".github/images/Sanji's_Wanted_Poster.png">
 
-![Publish Packages](https://github.com/callmewhy/sanji/workflows/Publish%20Packages/badge.svg?branch=master)
-![Build](https://github.com/callmewhy/sanji/workflows/Build/badge.svg?branch=develop)
+[![Build](https://github.com/callmewhy/sanji/workflows/Build/badge.svg?branch=develop)](https://github.com/callmewhy/sanji/actions?query=branch%3Adevelop+workflow%3ABuild)
+[![NuGet](https://img.shields.io/nuget/v/sanji?color=%2334D058&label=NuGet)](https://www.nuget.org/packages/Sanji/)
 
 A sandbox for smoke testing
 
