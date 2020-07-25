@@ -1,0 +1,11 @@
+{
+    "msbuild-sdks": {
+      "Microsoft.Build.CentralPackageVersions": "2.0.46",
+      "Microsoft.Build.NoTargets": "1.0.80",
+      "Microsoft.Build.Traversal": "2.0.12"
+    },
+    "sdk": {
+      "version": "3.1.*",
+      "rollForward": "latestPatch"
+    }
+  }
