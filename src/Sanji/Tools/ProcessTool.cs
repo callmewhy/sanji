@@ -1,10 +1,13 @@
 namespace Sanji
 {
+    using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
 
-    public static class ProcessTool
+    internal static class ProcessTool
     {
         public static int Start(string filename, string arguments = "")
         {
@@ -41,7 +44,7 @@ namespace Sanji
             return process.Id;
         }
 
-        public static void Kill(int pid)
+        public static void KillByPid(int pid)
         {
             try
             {
@@ -50,6 +53,55 @@ namespace Sanji
             }
             catch
             {
+            }
+        }
+
+        public static void KillByPort(int port)
+        {
+            var pStartInfo = new ProcessStartInfo()
+            {
+                FileName = "netstat.exe",
+                Arguments = "-a -n -o",
+                WindowStyle = ProcessWindowStyle.Maximized,
+                UseShellExecute = false,
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+            };
+
+            var process = new Process() { StartInfo = pStartInfo };
+            try
+            {
+                process.Start();
+            }
+            catch
+            {
+                return;
+            }
+
+            var output = process.StandardOutput.ReadToEnd();
+            if (process.ExitCode != 0)
+            {
+                throw new Exception($"netstat failed with ExitCode: {process.ExitCode}");
+            }
+
+            foreach (var line in output.Split("\r\n"))
+            {
+                if (line.Trim().StartsWith("Proto"))
+                {
+                    continue;
+                }
+
+                var parts = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (parts.Length > 2)
+                {
+                    var currentPort = int.Parse(parts[1].Split(':').Last());
+                    if (currentPort == port)
+                    {
+                        Process.GetProcessById(int.Parse(parts.Last())).Kill();
+                    }
+                }
             }
         }
     }
