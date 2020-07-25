@@ -4,7 +4,15 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
 
         <IsPackable>false</IsPackable>
+
+        <Configurations>Debug;Release;Dev</Configurations>
     </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="TestResults\**" />
+      <EmbeddedResource Remove="TestResults\**" />
+      <None Remove="TestResults\**" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" />
@@ -16,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Sanji\Sanji.csproj" />
+        <ProjectReference Include="..\..\Sanji\Sanji.csproj" />
     </ItemGroup>
 
     <ItemGroup>

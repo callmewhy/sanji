@@ -16,6 +16,7 @@ namespace Sanji
         {
             try
             {
+                ProcessTool.KillByPort(this.Port);
                 var pid = ProcessTool.Start(this.Executable);
                 Console.WriteLine($"{this.Name} running on process id {pid}");
                 this.Pid = pid;
@@ -23,12 +24,13 @@ namespace Sanji
             catch (Exception ex)
             {
                 Console.WriteLine($"Failed to launch process for service {this.Name}", ex);
+                throw;
             }
         }
 
         internal void Stop()
         {
-            ProcessTool.Kill(this.Pid);
+            ProcessTool.KillByPid(this.Pid);
             Console.WriteLine($"{this.Name} is killed on process id {this.Pid}");
         }
     }
