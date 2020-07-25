@@ -16,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Sanji\Sanji.csproj" />
+        <ProjectReference Include="..\..\Sanji\Sanji.csproj" />
     </ItemGroup>
 
     <ItemGroup>

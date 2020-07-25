@@ -1,5 +1,9 @@
 name: Publish Packages
 
+defaults:
+  run:
+    working-directory: src
+
 on:
   push:
     branches:
@@ -21,5 +25,5 @@ jobs:
     - name: Publish Sanji
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
-          PROJECT_FILE_PATH: src/Sanji/Sanji.csproj
+          PROJECT_FILE_PATH: Sanji/Sanji.csproj
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}

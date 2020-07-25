@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sanji", "src\Sanji\Sanji.csproj", "{C41D9C42-ADBA-4E66-A3B0-06344AB2251E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sanji", "Sanji\Sanji.csproj", "{C41D9C42-ADBA-4E66-A3B0-06344AB2251E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{DA06B347-80C1-47E8-A67B-25F2536B6B46}"
 EndProject
@@ -13,10 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{3595706C-8433-44
 	ProjectSection(SolutionItems) = preProject
 		directory.build.props = directory.build.props
 		directory.build.targets = directory.build.targets
-		global.json = global.json
 		Packages.props = Packages.props
-		README.md = README.md
-		build\stylecop.ruleset = build\stylecop.ruleset
+		stylecop.ruleset = stylecop.ruleset
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B8354911-FCA2-4134-8B43-282AB0E0A064}"
