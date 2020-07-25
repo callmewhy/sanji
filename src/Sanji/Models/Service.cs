@@ -24,6 +24,7 @@ namespace Sanji
             catch (Exception ex)
             {
                 Console.WriteLine($"Failed to launch process for service {this.Name}", ex);
+                throw;
             }
         }
 
