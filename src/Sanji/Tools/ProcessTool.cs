@@ -45,14 +45,8 @@ namespace Sanji
 
         public static void KillByPid(int pid)
         {
-            try
-            {
-                using var process = Process.GetProcessById(pid);
-                process?.Kill();
-            }
-            catch
-            {
-            }
+            using var process = Process.GetProcessById(pid);
+            process.Kill();
         }
 
         public static void KillByPort(int port)
@@ -69,20 +63,9 @@ namespace Sanji
             };
 
             var process = new Process() { StartInfo = pStartInfo };
-            try
-            {
-                process.Start();
-            }
-            catch
-            {
-                return;
-            }
+            process.Start();
 
             var output = process.StandardOutput.ReadToEnd();
-            if (process.ExitCode != 0)
-            {
-                throw new Exception($"netstat failed with ExitCode: {process.ExitCode}");
-            }
 
             foreach (var line in output.Split("\r\n"))
             {
@@ -98,7 +81,13 @@ namespace Sanji
                     var currentPort = int.Parse(parts[1].Split(':').Last());
                     if (currentPort == port)
                     {
-                        Process.GetProcessById(int.Parse(parts.Last())).Kill();
+                        try
+                        {
+                            KillByPid(int.Parse(parts.Last()));
+                        }
+                        catch
+                        {
+                        }
                     }
                 }
             }

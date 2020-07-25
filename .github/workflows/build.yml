@@ -25,3 +25,9 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Demo Test
       run: dotnet test
+    - name: Sanji Unit Test
+      run: dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=TestResults\CodeCoverage\ Sanji.UnitTest
+    - uses: 5monkeys/cobertura-action@master
+      with:
+        path: Sanji.UnitTest\TestResults\CodeCoverage\coverage.cobertura.xml
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
