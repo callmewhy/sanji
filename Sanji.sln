@@ -16,12 +16,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{3595706C-8433-44
 		global.json = global.json
 		Packages.props = Packages.props
 		README.md = README.md
-		stylecop.ruleset = stylecop.ruleset
+		build\stylecop.ruleset = build\stylecop.ruleset
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B8354911-FCA2-4134-8B43-282AB0E0A064}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoTest", "demo\DemoTest\DemoTest.csproj", "{BF74A00B-EF51-4826-8267-3E04540BA5F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoTest", "demo\DemoTest\DemoTest.csproj", "{BF74A00B-EF51-4826-8267-3E04540BA5F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
