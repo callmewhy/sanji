@@ -8,32 +8,34 @@ namespace Sanji
 
     internal static class ProcessTool
     {
-        public static int Start(string filename, string arguments = "")
+        public delegate void DataReceivedEventHandler(string data);
+
+        public static int Start(
+            string filename,
+            string arguments,
+            DataReceivedEventHandler onOutputDataReceived,
+            DataReceivedEventHandler onErrorDataReceived)
         {
             var file = new FileInfo(filename);
             using var process = new Process()
             {
                 StartInfo =
                 {
-                    FileName = file.FullName,
+                    FileName = "netstat.exe",
                     Arguments = arguments,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     UseShellExecute = false,
-                    CreateNoWindow = true,
                 },
                 EnableRaisingEvents = true,
             };
-            var outputBuilder = new StringBuilder();
             process.OutputDataReceived += (_, e) =>
             {
-                outputBuilder.AppendLine(e.Data);
+                onOutputDataReceived(e.Data);
             };
-
-            var errorBuilder = new StringBuilder();
             process.ErrorDataReceived += (_, e) =>
             {
-                errorBuilder.AppendLine(e.Data);
+                onErrorDataReceived(e.Data);
             };
 
             process.Start();

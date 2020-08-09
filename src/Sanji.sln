@@ -13,13 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{3595706C-8433-44
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sanji", "Sanji\Sanji.csproj", "{C41D9C42-ADBA-4E66-A3B0-06344AB2251E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{DA06B347-80C1-47E8-A67B-25F2536B6B46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sanji.UnitTest", "Sanji.UnitTest\Sanji.UnitTest.csproj", "{DBE813E6-800B-4B06-83CD-AE91A4850DD2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.SampleASP1", "demo\Demo.SampleASP1\Demo.SampleASP1.csproj", "{2EC6BEBD-891B-4C72-B0A9-4688F77D8F7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo", "Demo\Demo.csproj", "{BF74A00B-EF51-4826-8267-3E04540BA5F8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Test", "demo\Demo.Test\Demo.Test.csproj", "{BF74A00B-EF51-4826-8267-3E04540BA5F8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sanji.UnitTest", "Sanji.UnitTest\Sanji.UnitTest.csproj", "{DBE813E6-800B-4B06-83CD-AE91A4850DD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.SampleASP1", "Demo.SampleASP1\Demo.SampleASP1.csproj", "{2EC6BEBD-891B-4C72-B0A9-4688F77D8F7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,10 +44,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{2EC6BEBD-891B-4C72-B0A9-4688F77D8F7A} = {DA06B347-80C1-47E8-A67B-25F2536B6B46}
-		{BF74A00B-EF51-4826-8267-3E04540BA5F8} = {DA06B347-80C1-47E8-A67B-25F2536B6B46}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6E5E1C08-4902-4238-9C7A-162373845220}

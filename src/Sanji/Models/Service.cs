@@ -1,6 +1,7 @@
 namespace Sanji
 {
     using System;
+    using System.IO;
 
     public class Service
     {
@@ -17,7 +18,19 @@ namespace Sanji
             try
             {
                 ProcessTool.KillByPort(this.Port);
-                var pid = ProcessTool.Start(this.Executable);
+                var pid = ProcessTool.Start(
+                    this.Executable,
+                    string.Empty,
+                    (data) =>
+                    {
+                        Console.WriteLine($"{this.Name} log: {data}");
+                        this.LogText(data);
+                    },
+                    (data) =>
+                    {
+                        Console.WriteLine($"{this.Name} log: {data}");
+                        this.LogText(data);
+                    });
                 Console.WriteLine($"{this.Name} running on process id {pid}");
                 this.Pid = pid;
             }
@@ -32,6 +45,11 @@ namespace Sanji
         {
             ProcessTool.KillByPid(this.Pid);
             Console.WriteLine($"{this.Name} is killed on process id {this.Pid}");
+        }
+
+        private void LogText(string text)
+        {
+            File.AppendAllText(System.AppDomain.CurrentDomain.BaseDirectory + "log.txt", text);
         }
     }
 }
