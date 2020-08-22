@@ -8,10 +8,14 @@ namespace Sanji
 
     internal static class ProcessTool
     {
-        public static int Start(string filename, string arguments = "")
+        public delegate void DataReceivedEventHandler(string data);
+
+        public static Process Start(
+            string filename,
+            string arguments = "")
         {
             var file = new FileInfo(filename);
-            using var process = new Process()
+            var process = new Process()
             {
                 StartInfo =
                 {
@@ -20,33 +24,12 @@ namespace Sanji
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     UseShellExecute = false,
-                    CreateNoWindow = true,
                 },
                 EnableRaisingEvents = true,
             };
-            var outputBuilder = new StringBuilder();
-            process.OutputDataReceived += (_, e) =>
-            {
-                outputBuilder.AppendLine(e.Data);
-            };
-
-            var errorBuilder = new StringBuilder();
-            process.ErrorDataReceived += (_, e) =>
-            {
-                errorBuilder.AppendLine(e.Data);
-            };
-
             process.Start();
-            process.BeginOutputReadLine();
-            process.BeginErrorReadLine();
 
-            return process.Id;
-        }
-
-        public static void KillByPid(int pid)
-        {
-            using var process = Process.GetProcessById(pid);
-            process.Kill();
+            return process;
         }
 
         public static void KillByPort(int port)
@@ -62,10 +45,10 @@ namespace Sanji
                 RedirectStandardError = true,
             };
 
-            var process = new Process() { StartInfo = pStartInfo };
-            process.Start();
+            var netstatProcess = new Process() { StartInfo = pStartInfo };
+            netstatProcess.Start();
 
-            var output = process.StandardOutput.ReadToEnd();
+            var output = netstatProcess.StandardOutput.ReadToEnd();
 
             foreach (var line in output.Split("\r\n"))
             {
@@ -83,7 +66,9 @@ namespace Sanji
                     {
                         try
                         {
-                            KillByPid(int.Parse(parts.Last()));
+                            var pid = int.Parse(parts.Last());
+                            var process = Process.GetProcessById(pid);
+                            process.Kill();
                         }
                         catch
                         {
