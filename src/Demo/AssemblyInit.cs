@@ -18,6 +18,7 @@ namespace DemoTest
         public static void AssemblyCleanup()
         {
             Sanji.Stop();
+            Console.WriteLine($"Test cleanup");
         }
     }
 }

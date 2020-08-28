@@ -1,15 +1,21 @@
 namespace Sanji
 {
+    using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Linq;
     using System.Text;
 
-    public static class ProcessTool
+    internal static class ProcessTool
     {
-        public static int Start(string filename, string arguments = "")
+        public delegate void DataReceivedEventHandler(string data);
+
+        public static Process Start(
+            string filename,
+            string arguments = "")
         {
             var file = new FileInfo(filename);
-            using var process = new Process()
+            var process = new Process()
             {
                 StartInfo =
                 {
@@ -18,38 +24,57 @@ namespace Sanji
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     UseShellExecute = false,
-                    CreateNoWindow = true,
                 },
                 EnableRaisingEvents = true,
             };
-            var outputBuilder = new StringBuilder();
-            process.OutputDataReceived += (_, e) =>
-            {
-                outputBuilder.AppendLine(e.Data);
-            };
-
-            var errorBuilder = new StringBuilder();
-            process.ErrorDataReceived += (_, e) =>
-            {
-                errorBuilder.AppendLine(e.Data);
-            };
-
             process.Start();
-            process.BeginOutputReadLine();
-            process.BeginErrorReadLine();
 
-            return process.Id;
+            return process;
         }
 
-        public static void Kill(int pid)
+        public static void KillByPort(int port)
         {
-            try
+            var pStartInfo = new ProcessStartInfo()
             {
-                using var process = Process.GetProcessById(pid);
-                process?.Kill();
-            }
-            catch
+                FileName = "netstat.exe",
+                Arguments = "-a -n -o",
+                WindowStyle = ProcessWindowStyle.Maximized,
+                UseShellExecute = false,
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+            };
+
+            var netstatProcess = new Process() { StartInfo = pStartInfo };
+            netstatProcess.Start();
+
+            var output = netstatProcess.StandardOutput.ReadToEnd();
+
+            foreach (var line in output.Split("\r\n"))
             {
+                if (line.Trim().StartsWith("Proto"))
+                {
+                    continue;
+                }
+
+                var parts = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (parts.Length > 2)
+                {
+                    var currentPort = int.Parse(parts[1].Split(':').Last());
+                    if (currentPort == port)
+                    {
+                        try
+                        {
+                            var pid = int.Parse(parts.Last());
+                            var process = Process.GetProcessById(pid);
+                            process.Kill();
+                        }
+                        catch
+                        {
+                        }
+                    }
+                }
             }
         }
     }
