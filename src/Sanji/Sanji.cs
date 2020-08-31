@@ -11,7 +11,7 @@ namespace Sanji
 
         public static Service GetService(string serviceName)
         {
-            return Services.Find(i => i.Name == serviceName);
+            return Services.Find(i => i.Settings.Name == serviceName);
         }
 
         public static void Start()
@@ -23,12 +23,7 @@ namespace Sanji
             AppSettings = configuration.Get<AppSettings>();
             Services = AppSettings.Services.ConvertAll(i =>
             {
-                return new Service()
-                {
-                    Name = i.Name,
-                    Executable = i.Executable,
-                    Port = i.Port,
-                };
+                return new Service(i);
             });
 
             foreach (var service in Services)

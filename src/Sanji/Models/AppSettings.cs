@@ -13,6 +13,8 @@ namespace Sanji
             public string Executable { get; set; }
 
             public int Port { get; set; }
+
+            public Dictionary<string, string> EnvironmentVariables { get; set; }
         }
     }
 }

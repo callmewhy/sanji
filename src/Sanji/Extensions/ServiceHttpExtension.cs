@@ -9,7 +9,7 @@ namespace Sanji
         {
             var httpClient = new HttpClient
             {
-                BaseAddress = new Uri($"http://localhost:{self.Port}"),
+                BaseAddress = new Uri($"http://localhost:{self.Settings.Port}"),
             };
             return httpClient;
         }

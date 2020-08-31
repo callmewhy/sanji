@@ -1,6 +1,8 @@
 namespace Sanji
 {
     using System;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
@@ -12,6 +14,7 @@ namespace Sanji
 
         public static Process Start(
             string filename,
+            IDictionary<string, string> environmentVariables = null,
             string arguments = "")
         {
             var file = new FileInfo(filename);
@@ -27,6 +30,15 @@ namespace Sanji
                 },
                 EnableRaisingEvents = true,
             };
+
+            if (environmentVariables != null)
+            {
+                foreach (var i in environmentVariables)
+                {
+                    process.StartInfo.Environment.Add(i);
+                }
+            }
+
             process.Start();
 
             return process;
