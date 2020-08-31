@@ -1,5 +1,6 @@
 namespace SampleASP1.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -14,6 +15,7 @@ namespace SampleASP1.Controllers
         public BooksController(ILogger<BooksController> logger)
         {
             this.logger = logger;
+            this.logger.LogInformation("Var1 = {}", Environment.GetEnvironmentVariable("Var1"));
         }
 
         [HttpGet]

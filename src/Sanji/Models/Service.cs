@@ -52,7 +52,7 @@ namespace Sanji
 
         private void LogText(string type, string text)
         {
-            var filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"log_{this.Settings.Name}_{type}_{this.StartedAt:yyyy_MM_dd_HH_mm_ss}.txt");
+            var filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"log_{this.StartedAt:yyyy_MM_dd_HH_mm_ss}_{this.Settings.Name}_{type}.txt");
             File.AppendAllText(filename, text);
         }
     }
